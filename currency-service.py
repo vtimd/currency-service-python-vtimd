@@ -13,10 +13,10 @@ def gbp():
         for subchild in child:
             for subsubchild in subchild:
                 if subsubchild.attrib['currency'] == 'GBP':
-                    gbprate=subsubchild.attrib['rate']
+                    gbprate=subsubchild.attrib['rate']   
 
     print(gbprate)
-    return gbprate
+    return gbprate 
 
 @app.route("/cad")
 def cad():
