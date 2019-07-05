@@ -3,8 +3,9 @@ from xml.etree import ElementTree as ET
 from flask import Flask
 app = Flask(__name__)
 
-@app.route("/gbp")
+@app.route("/gbp/<float:value>")
 def gbp():
+    usdvalue = value
 
     r = requests.get('http://www.ecb.int/stats/eurofxref/eurofxref-daily.xml', stream=True)
     tree = ET.parse(r.raw)
@@ -15,8 +16,10 @@ def gbp():
                 if subsubchild.attrib['currency'] == 'GBP':
                     gbprate=subsubchild.attrib['rate']   
 
-    print(gbprate)
-    return gbprate 
+    gbpvalue = usdvalue * gbprate
+
+    print(gbpvalue)
+    return gbpvalue  
 
 @app.route("/cad")
 def cad():
@@ -33,5 +36,5 @@ def cad():
     return cadrate
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=5000, host='0.0.0.0')
 
