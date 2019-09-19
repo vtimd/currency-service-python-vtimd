@@ -6,6 +6,14 @@ http://www.ecb.int/stats/eurofxref/eurofxref-daily.xml
 
 There are many currency conversion API's available that are available for public consumption, but those cost money to do at scale, and we're cheap. 
 
+##How To:
+
+Build & Run the Docker image. Flask will automatically start the app. You can then access it via Curl:
+
+~$ curl http://localhost:5000/XXX
+
+XXX = currency. Currently available is gbp and cad. curl will return the current days exchange rate, not a converted number.
+
 ##Current Functionality:
 
 Runs via Flask
